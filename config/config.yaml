@@ -33,8 +33,13 @@ fixed_start:              # used only when start_mode == "fixed"
 
 # --- Agents / LLM ---
 agents:
-  cop_strategy: heuristic   # heuristic | q_table | llm
+  cop_strategy: heuristic   # heuristic | q_table | llm | search | search_llm
   thief_strategy: heuristic
+# Bounded minimax over the real rules drives the move for the search/search_llm
+# agents (Cop maximizes capture + herds with barriers, Thief maximizes survival);
+# the heuristic takes over under fog. Depth is plies of look-ahead.
+search:
+  depth: 6                  # 6 ~16ms/move, 8 ~110ms/move on 5x5 (both < per-turn timeout)
 llm:
   # Provider for the LLM-driven agents. The API key is read from the environment
   # (OPENAI_API_KEY), never stored here. agents.*_strategy must be "llm" to use it.
