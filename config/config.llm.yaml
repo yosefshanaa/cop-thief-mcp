@@ -1,0 +1,96 @@
+# Cop & Thief — RUN-ONLY LLM config (derived from config.yaml).
+# Identical to config.yaml except agents.{cop,thief}_strategy = llm, so a full
+# series runs LLM-vs-LLM without touching the committed heuristic default.
+# Use: uv run cop-thief --config config/config.llm.yaml
+version: "1.00"
+
+# --- Board & game rules ---
+grid_size: [5, 5]          # [rows, cols]; default 5x5
+max_moves: 25              # max Thief moves per sub-game (25 rounds)
+num_games: 6              # sub-games per series
+max_barriers: 5           # max barriers the Cop may place per sub-game
+vision_radius: 1          # local-series default: r1 keeps a balanced contest on 5x5
+                          # (r2 = near-full visibility -> structurally ~100% Cop).
+                          # The bonus match overrides this to the agreed r2 (match.vision_radius).
+movement_mode: eight_directional
+
+# --- Scoring (PRD §8) ---
+scoring:
+  cop_win: 20             # Cop points on capture
+  thief_win: 10           # Thief points on escape
+  cop_loss: 5             # Cop points when the Thief escapes
+  thief_loss: 5           # Thief points when captured
+
+# --- Start positions ---
+start_mode: random        # "random" (seeded) or "fixed"
+seed: 1234                # shared seed for reproducible starts
+start_distance_min: 3     # floor on Chebyshev start separation (local balance: avoids
+                          # distance-2 starts that trivially capture the blind Thief).
+start_distance_max: 3     # cap Chebyshev start separation (avoids distance-4 far-corner
+                          # starts on 5x5). With min==max==3, starts are exactly 3 apart.
+                          # Omit/null = unbounded. The bonus match samples unbounded at r2.
+fixed_start:              # used only when start_mode == "fixed"
+  cop: [0, 0]
+  thief: [4, 4]
+
+# --- Agents / LLM ---
+agents:
+  cop_strategy: llm         # heuristic | q_table | llm
+  thief_strategy: llm
+llm:
+  # Provider for the LLM-driven agents. The API key is read from the environment
+  # (OPENAI_API_KEY), never stored here. agents.*_strategy must be "llm" to use it.
+  provider: openai        # none | openai | anthropic | gemini | ollama
+  model: "gpt-4o-mini"    # cheap/fast for iteration; bump to gpt-4o for real matches
+  temperature: 0.7
+  per_turn_timeout_seconds: 30
+
+# --- MCP servers ---
+# Local host/port for dev. In the cloud, $PORT overrides the port and the server binds
+# 0.0.0.0 (see mcp/serve.py::resolve_bind); deploy via Dockerfile + docs/DEPLOY.md.
+mcp:
+  cop_host: "127.0.0.1"
+  cop_port: 8001
+  thief_host: "127.0.0.1"
+  thief_port: 8002
+  cop_url: "TODO: https://cop-mcp.example.run"
+  thief_url: "TODO: https://thief-mcp.example.run"
+
+# --- Auth (tokens come from env, never here) ---
+auth:
+  header_name: "Authorization"
+  token_env_var: "MCP_AUTH_TOKEN"   # token value lives in the environment
+
+# --- Reporting / email ---
+report:
+  recipient: "rmisegal+uoh26b@gmail.com"
+  timezone: "Asia/Jerusalem"
+  group_name: "TODO: Team-Name"
+  students: []                       # TODO: [{name, id}, ...]
+  github_repo: "https://github.com/yosefshanaa/HW6"
+  credentials_file: "credentials.json"
+  token_file: "token.json"
+  gmail_scopes: ["https://www.googleapis.com/auth/gmail.send"]
+
+# --- Bonus inter-group match (§9.2) ---
+# group_1 = us; group_2 = the partner team. For the local dry-run
+# (`uv run cop-thief-match`) group_2 is a simulated peer on loopback.
+# Real URLs/tokens are exchanged out of band and stay out of this file.
+match:
+  vision_radius: 2                     # agreed bonus-match radius (SHARED_MATCH_RULES §2.9)
+  group_1: "TODO: Team-Name"
+  group_2: "TODO: Partner-Team"
+  github_repo_group_1: "https://github.com/yosefshanaa/HW6"
+  github_repo_group_2: "TODO: https://github.com/partner/HW6"
+  students_group_1: []                 # TODO: [{name, id}, ...]
+  students_group_2: []
+  mcp_url_group_1_cop: "TODO: https://g1-cop-mcp.example.run"
+  mcp_url_group_1_thief: "TODO: https://g1-thief-mcp.example.run"
+  mcp_url_group_2_cop: "TODO: https://g2-cop-mcp.example.run"
+  mcp_url_group_2_thief: "TODO: https://g2-thief-mcp.example.run"
+
+# --- Logging / replay ---
+logging:
+  level: "INFO"
+  results_dir: "results"
+  logs_dir: "logs"
