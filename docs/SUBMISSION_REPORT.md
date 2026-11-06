@@ -1,6 +1,6 @@
 # Submission Report — HW6: Dual AI Agent Race via MCP (Cop & Thief)
 
-**Version:** 1.00 · **Repo:** https://github.com/yosefshanaa/HW6 · **Date:** 2026-06-23
+**Version:** 1.00 · **Repo:** https://github.com/yosefshanaa/cop-thief-mcp · **Date:** 2026-06-23
 
 A single-page overview tying the deliverables together for grading. Detailed docs are linked
 throughout.
