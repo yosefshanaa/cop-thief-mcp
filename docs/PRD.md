@@ -574,7 +574,7 @@ The project is **accepted** when all of the following hold:
 
 - `TODO: group_name` (our team name)
 - `TODO: students` (names + IDs for `students` / `students_group_*`)
-- `github_repo` = `https://github.com/yosefshanaa/HW6` ✅ (set in `config/config.yaml`)
+- `github_repo` = `https://github.com/yosefshanaa/cop-thief-mcp` ✅ (set in `config/config.yaml`)
 - `TODO: cop_mcp_url`, `TODO: thief_mcp_url` (cloud HTTPS URLs)
 - `TODO: partner team name + their repo + their MCP URLs` (bonus)
 - `TODO: seed` and `start_mode` (shared seed for start positions, or fixed cop/thief cells)

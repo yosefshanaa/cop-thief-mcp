@@ -1,6 +1,6 @@
 # HW6 — Cop & Thief: Dual AI Agents via MCP
 
-[![CI](https://github.com/yosefshanaa/HW6/actions/workflows/ci.yml/badge.svg)](https://github.com/yosefshanaa/HW6/actions/workflows/ci.yml)
+[![CI](https://github.com/yosefshanaa/cop-thief-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/yosefshanaa/cop-thief-mcp/actions/workflows/ci.yml)
 
 Two autonomous AI agents — a **Cop** and a **Thief** — play a turn-based pursuit game on a
 configurable grid under **partial observability** (a Dec-POMDP). Each agent is fronted by its **own
@@ -42,7 +42,7 @@ terminal output are in the **Live two-team match** section below.
 ## Quick start
 
 ```bash
-git clone https://github.com/yosefshanaa/HW6.git && cd HW6
+git clone https://github.com/yosefshanaa/cop-thief-mcp.git && cd cop-thief-mcp
 uv sync                  # creates .venv from the lockfile (no pip/venv needed)
 
 uv run cop-thief         # play a full 6-sub-game series → JSON report on stdout

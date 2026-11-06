@@ -43,7 +43,7 @@
   (Phase 16).
 
 **Open placeholders (fill before submission):** team name, students, real MCP cloud URLs, cloud
-provider, LLM provider/model. (`github_repo` is set to `https://github.com/yosefshanaa/HW6`.)
+provider, LLM provider/model. (`github_repo` is set to `https://github.com/yosefshanaa/cop-thief-mcp`.)
 
 ---
 

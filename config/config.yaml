@@ -72,7 +72,7 @@ report:
   students:
     - {name: "yosef shanaa", id: "213314859"}
     - {name: "ahmad kaiss", id: "325811255"}
-  github_repo: "https://github.com/yosefshanaa/HW6"
+  github_repo: "https://github.com/yosefshanaa/cop-thief-mcp"
   credentials_file: "credentials.json"
   token_file: "token.json"
   gmail_scopes: ["https://www.googleapis.com/auth/gmail.send"]
@@ -85,7 +85,7 @@ match:
   vision_radius: 2                     # agreed bonus-match radius (SHARED_MATCH_RULES §2.9)
   group_1: "ahk-yosi"
   group_2: "TODO: Partner-Team"
-  github_repo_group_1: "https://github.com/yosefshanaa/HW6"
+  github_repo_group_1: "https://github.com/yosefshanaa/cop-thief-mcp"
   github_repo_group_2: "TODO: https://github.com/partner/HW6"
   students_group_1:
     - {name: "yosef shanaa", id: "213314859"}
