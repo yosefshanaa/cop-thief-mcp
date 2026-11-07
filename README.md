@@ -1,4 +1,4 @@
-# HW6 — Cop & Thief: Dual AI Agents via MCP
+# Cop & Thief: Dual AI Agents via MCP
 
 [![CI](https://github.com/yosefshanaa/cop-thief-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/yosefshanaa/cop-thief-mcp/actions/workflows/ci.yml)
 
